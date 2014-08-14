@@ -1,4 +1,4 @@
-package br.com.mundialinformatica.emailmarketing.model;
+package br.com.mkz.emailmarketing.model;
 
 public class Contato {
 	private String nome;
