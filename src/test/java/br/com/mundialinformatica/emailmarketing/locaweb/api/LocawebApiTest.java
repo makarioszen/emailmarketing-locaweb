@@ -1,5 +1,6 @@
 package br.com.mundialinformatica.emailmarketing.locaweb.api;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.Assert;
@@ -17,7 +18,8 @@ public class LocawebApiTest {
 	@Test
 	public void sendContato() throws SendException {
 		Contato c = new Contato();
-		c.setEmail("rodrigo@hhohdohod.com");
+		c.setNome("Marco");
+		c.setEmail("webmaster.mundial@gmail.com");
 		Assert.assertEquals(200, api.sendContato(c));
 	}
 
@@ -27,6 +29,24 @@ public class LocawebApiTest {
 		for (Contato c : contatos) {
 			System.out.println(c);
 		}
+	}
+
+	@Test
+	public void corrigeDataCadastro() throws RequestException, SendException {
+		List<Contato> contatos = api.getContatosFromList(48253L);
+		List<Contato> contatoListSend = new ArrayList<>();
+		for (Contato c : contatos) {
+			Contato c2 = new Contato();
+			c2.setEmail(c.getEmail());
+			c2.setNome(c.getNome());
+			contatoListSend.add(c2);
+		}
+		
+		for (Contato c : contatoListSend) {
+			api.sendContato(c);
+		}
+		
+
 	}
 
 }
