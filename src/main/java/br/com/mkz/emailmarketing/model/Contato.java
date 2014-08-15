@@ -7,11 +7,19 @@ public class Contato {
 	private String nome;
 	private String email;
 	private String datacadastro;
+	private static final String EMAIL_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+			+ "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
 
 	public Contato() {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		datacadastro = sdf.format(GregorianCalendar.getInstance().getTime());
 	}
+	
+	public Boolean isValid() {
+		pattern = Pattern.compile(EMAIL_PATTERN);
+		matcher = pattern.matcher(address);
+		return matcher.matches();
+	};
 
 	public String getNome() {
 		return nome;
